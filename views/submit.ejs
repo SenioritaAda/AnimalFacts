@@ -1,0 +1,13 @@
+<%-include("partials/header.ejs") %>
+
+<h1>Submit an animal fact</h1>
+<form action="/submit" method="POST">
+    <div class="form-group">
+      <label for="postContent">Animal Fact</label>
+      <textarea class="form-control" name="postContent" rows="3" autofocus required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-dark">Publish</button>
+  </form>
+
+<%-include("partials/footer.ejs") %>

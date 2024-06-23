@@ -1,0 +1,30 @@
+<%-include("partials/header.ejs") %>
+
+<h1>Animal Facts</h1>
+
+<div class="container px-4 py-5" id="hanging-icons">
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <% for (let i = 0; i < facts.length; i++) { %>
+        <div class="col d-flex align-items-start" id="fact-<%= i %>">
+          <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <svg class="bi" width="1em" height="1em">
+              <use xlink:href="#toggles2"></use>
+            </svg>
+          </div>
+          <div>
+            <p class="fact"><%= facts[i] %></p>
+            <form id="editForm<%= i %>" action="/edit-fact/<%= i %>" method="POST" style="display: none;">
+              <input type="text" name="newFact" placeholder="Edit fact" required>
+              <button type="submit" class="btn btn-dark">Save</button>
+            </form>
+            <a href="#" class="btn btn-dark edit" onClick="document.getElementById('editForm<%= i %>').style.display = 'block'; return false;">Edit</a>
+            <form id="deleteForm<%= i %>" action="/delete-fact/<%= i %>" method="POST" style="display: none;">
+              <button type="submit" class="btn btn-dark">Delete</button>
+            </form>
+            <a href="#" class="btn btn-dark delete" onClick="if (confirm('Are you sure you want to delete this fact?')) { document.getElementById('deleteForm<%= i %>').submit(); } return false;">Delete</a>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+<%-include("partials/footer.ejs") %>
